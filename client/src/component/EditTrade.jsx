@@ -1,9 +1,16 @@
 import React from "react";
-import { FormControl, Input, InputLabel } from "@mui/material";
+import {
+  Grid,
+  Container,
+  Button,
+  FormControl,
+  Input,
+  InputLabel,
+} from "@mui/material";
 
 export const EditTrade = () => {
   return (
-    <div>
+    <Grid container rowSpacing={1}>
       <FormControl>
         <InputLabel htmlFor="my-input">Ticker</InputLabel>
         <Input id="my-input" aria-describedby="my-helper-text" />
@@ -15,9 +22,11 @@ export const EditTrade = () => {
       </FormControl>
 
       <FormControl>
-        <InputLabel htmlFor="my-input">Strategy</InputLabel>
+        <InputLabel htmlFor="my-input">DTE</InputLabel>
         <Input id="my-input" aria-describedby="my-helper-text" />
       </FormControl>
-    </div>
+
+      <Button variant="outlined">Submit</Button>
+    </Grid>
   );
 };

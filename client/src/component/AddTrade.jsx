@@ -88,7 +88,9 @@ export const AddTrade = () => {
           />
         </div>
 
-        <Button className="btn">Add trade</Button>
+        <Button className="btn" onClick={onSubmit}>
+          Add trade
+        </Button>
       </Form>
     </div>
   );

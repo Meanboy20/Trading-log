@@ -108,10 +108,12 @@ export const TradeList = () => {
       <tr key={ele._id}>
         <td>{ele.createAt}</td>
         <td>{ele.ticker}</td>
+        <td>{ele.type}</td>
         <td>{ele.stockPrice}</td>
         <td>{ele.expirationDate}</td>
         <td>{ele.strikePrice}</td>
         <td>{ele.premium}</td>
+        <td></td>
 
         <td>
           <button>edit</button>
