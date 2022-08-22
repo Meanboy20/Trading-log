@@ -14,7 +14,7 @@ function App() {
     <GlobalProvider>
       <Routes>
         <Route path="/" element={<Body />} />
-        <Route path="/33" element={<EditTrade />} />
+        <Route path="/edit/:id" element={<EditTrade />} />
       </Routes>
     </GlobalProvider>
   );

@@ -1,23 +1,62 @@
 @import "~antd/dist/antd.css";
 
-body {
-  background-color: #f7f7f7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 30vh;
-  margin: 30vh;
-  font-family: "Lato", sans-serif;
+table,
+th,
+td {
+  border: 2px solid blue;
+  border-collapse: collapse;
+  text-align: center;
+  overflow: hidden;
+  max-height: 0in;
 }
 
+input,
+select {
+  padding: 6px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+}
+
+button {
+  color: white;
+  border: 0;
+  background: #ff0aa7;
+  padding: 6px;
+  min-width: 30px;
+  border-radius: 4px;
+}
+.btn {
+  background-color: #9c88ff;
+}
+
+.main-container {
+  display: grid;
+  justify-content: center;
+  font-family: "Gill Sans";
+}
+
+.add-section {
+  display: inline;
+  justify-content: center;
+  font-family: "Gill Sans";
+  padding: 10px;
+}
+
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.info-table {
+  /* background-color: aqua; */
+  padding: 20px;
+  position: relative;
+  text-align: center;
+}
 .container {
   margin: 30px auto;
   width: 350px;
-}
-
-label {
-  display: inline-block;
-  margin: 10px 0;
 }
 
 input[type="text"],

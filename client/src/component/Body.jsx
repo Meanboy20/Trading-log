@@ -1,15 +1,18 @@
+import { Layout } from "antd";
+import "antd/dist/antd.min.css";
 import React from "react";
 import { AddTrade } from "./AddTrade";
-import { EditTrade } from "./EditTrade";
-import { Header } from "./Header";
 import { TradeList } from "./TradeList";
 
 export const Body = () => {
+  const { Header, Footer, Content } = Layout;
   return (
-    <div>
+    <Layout>
       <Header />
-      <TradeList />
-      <AddTrade />
-    </div>
+      <Content>
+        <TradeList /> <AddTrade />
+      </Content>
+      <Footer />
+    </Layout>
   );
 };

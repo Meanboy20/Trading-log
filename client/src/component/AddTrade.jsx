@@ -1,53 +1,58 @@
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
 export const AddTrade = () => {
-  const [ticker, setTicker] = useState("");
-  const [stockPrice, setStokPrice] = useState("");
-  const [strategy, setStrategy] = useState("");
-  const [strikePrice, setStrikePrice] = useState("");
-  const [expireDate, setExpireDate] = useState("");
-  const [premium, setPremium] = useState(0);
+  const tradeDetail = {
+    ticker: "",
+    type: "",
+    stockPrice: "",
+    strikePrice: "",
+    expirationDate: "",
+    premium: "",
+    size: "",
+    note: "",
+  };
+
+  const [trade, setTrade] = useState(tradeDetail);
 
   const { addTransaction } = useContext(GlobalContext);
 
-  const onSubmit = () => {
-    const newTrade = {
-      ticker: ticker,
-      type: strategy,
-      stockPrice: stockPrice,
-      strikePrice: strikePrice,
-      expirationDate: expireDate,
-      premium: premium,
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setTrade({
+      ...trade,
+      [name]: value,
+    });
+  };
 
-    addTransaction(newTrade);
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log(trade);
+    addTransaction(trade);
+    event.target.reset();
   };
 
   return (
-    <div>
-      <h3>Add new trade</h3>
-
-      <Form onSubmit={onSubmit}>
-        <Form.Group controlId="formName">
-          <Form.Label>Ticker</Form.Label>
-          <Form.Control
-            value={ticker}
-            onChange={(e) => setTicker(e.target.value)}
+    <div className="add-section">
+      <form className="form-inline" onSubmit={onSubmit}>
+        <div className="row">
+          <label htmlFor="text">Ticker</label>
+          <input
             type="text"
-            placeholder="Enter ticker"
+            name="ticker"
+            style={{ width: "130px" }}
+            onChange={handleChange}
+            placeholder="Enter stock price..."
           />
-        </Form.Group>
-      </Form>
+        </div>
 
-      <Form>
         <div className="row">
           <label htmlFor="text">Stock price</label>
           <input
             type="text"
-            onChange={(e) => setStokPrice(e.target.value)}
+            name="stockPrice"
+            style={{ width: "170px" }}
+            onChange={handleChange}
             placeholder="Enter stock price..."
           />
         </div>
@@ -56,7 +61,9 @@ export const AddTrade = () => {
           <label htmlFor="text">Strategy</label>
           <input
             type="text"
-            onChange={(e) => setStrategy(e.target.value)}
+            name="type"
+            style={{ width: "130px" }}
+            onChange={handleChange}
             placeholder="Enter stratergy..."
           />
         </div>
@@ -65,7 +72,9 @@ export const AddTrade = () => {
           <label htmlFor="text">Strike Price</label>
           <input
             type="number"
-            onChange={(e) => setStrikePrice(e.target.value)}
+            name="strikePrice"
+            style={{ width: "130px" }}
+            onChange={handleChange}
             placeholder="Enter strike price..."
           />
         </div>
@@ -74,7 +83,9 @@ export const AddTrade = () => {
           <label htmlFor="text">Expire date</label>
           <input
             type="date"
-            onChange={(e) => setExpireDate(e.target.value)}
+            name="expirationDate"
+            style={{ width: "170px" }}
+            onChange={handleChange}
             placeholder="Enter expirationDate..."
           />
         </div>
@@ -83,15 +94,39 @@ export const AddTrade = () => {
           <label htmlFor="text">Premium</label>
           <input
             type="number"
-            onChange={(e) => setPremium(e.target.value)}
+            name="premium"
+            style={{ width: "150px" }}
+            onChange={handleChange}
             placeholder="Enter premium..."
           />
         </div>
 
-        <Button className="btn" onClick={onSubmit}>
+        <div className="row">
+          <label htmlFor="text">Size</label>
+          <input
+            type="number"
+            name="size"
+            style={{ width: "150px" }}
+            onChange={handleChange}
+            placeholder="Enter premium..."
+          />
+        </div>
+
+        <div className="row">
+          <label htmlFor="text">Note</label>
+          <textarea
+            type="text"
+            name="note"
+            style={{ width: "150px" }}
+            onChange={handleChange}
+            placeholder="Make sure you follow rules!!!"
+          />
+        </div>
+
+        <button type="submit" style={{ width: "150px" }}>
           Add trade
-        </Button>
-      </Form>
+        </button>
+      </form>
     </div>
   );
 };
