@@ -21,6 +21,13 @@ export default (state, action) => {
         ),
       };
 
+    case "UPDATE_TRADE": {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+
     case "ADD_TRANSACTION":
       return {
         ...state,

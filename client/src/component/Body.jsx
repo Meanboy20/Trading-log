@@ -9,7 +9,7 @@ export const Body = () => {
   return (
     <Layout>
       <Header />
-      <Content>
+      <Content className="content-container">
         <TradeList /> <AddTrade />
       </Content>
       <Footer />

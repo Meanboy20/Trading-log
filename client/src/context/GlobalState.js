@@ -74,10 +74,16 @@ export const GlobalProvider = ({ children }) => {
 
   async function updateTransaction(id, data) {
     try {
-      await axios.patch(`http://localhost:5000/api/v1/transactions/${id}`);
+      console.log("calling update api");
+
+      const res = await axios.patch(
+        `http://localhost:5000/api/v1/transactions/edit/${id}`,
+        data
+      );
+      console.log("update executed");
       dispatch({
         type: "UPDATE_TRADE",
-        payload: data,
+        payload: res,
       });
     } catch (error) {
       dispatch({
@@ -86,10 +92,10 @@ export const GlobalProvider = ({ children }) => {
       });
     }
 
-    dispatch({
-      type: "ADD_TRANSACTION",
-      payload: data,
-    });
+    // dispatch({
+    //   type: "ADD_TRANSACTION",
+    //   payload: data,
+    // });
   }
 
   return (

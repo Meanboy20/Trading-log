@@ -11,9 +11,8 @@ const router = express.Router();
 
 router.route("/").get(getTransactions).post(addTransactions);
 
-router
-  .route("/:id")
-  .delete(getTransactionById, deleteTransactions)
-  .patch(getTransactionById, updateTransaction);
+router.route("/:id").delete(getTransactionById, deleteTransactions);
+
+router.route("/edit/:id").patch(getTransactionById, updateTransaction);
 
 module.exports = router;

@@ -29,7 +29,8 @@ button {
   background-color: #9c88ff;
 }
 
-.main-container {
+.content-container {
+  padding: 30px;
   display: grid;
   justify-content: center;
   font-family: "Gill Sans";

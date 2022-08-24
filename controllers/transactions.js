@@ -2,7 +2,7 @@ const Transaction = require("../models/Transaction");
 const colors = require("colors");
 
 //@desc get all transactions
-//@route GET /api/v1/transactoins
+//@route GET /api/v1/transactoinsget
 //@access Public
 exports.getTransactions = async (req, res, next) => {
   try {
@@ -63,35 +63,28 @@ exports.deleteTransactions = async (req, res, next) => {
 //@access Public
 
 exports.updateTransaction = async (req, res) => {
-  if (req.body.ticker != null) {
-    res.transaction.ticker = req.body.ticker;
-  }
-
-  if (req.body.strikePrice != null) {
-    res.transaction.strikePrice = req.body.strikePrice;
-  }
-
-  if (req.body.stockPrice != null) {
-    res.transaction.stockPrice = req.body.stockPrice;
-  }
-
-  if (req.body.type != null) {
-    res.transaction.type = req.body.type;
-  }
-
-  if (req.body.premium != null) {
-    res.transaction.premium = req.body.premium;
-  }
-
-  if (req.body.expirationDate != null) {
-    res.transaction.expirationDate = req.body.expirationDate;
-  }
-
-  if (req.body.closePrice != null) {
-    res.transaction.closePrice = req.body.closePrice;
-  }
-
+  // console.log(req.body);
   try {
+    for (key in req.body) {
+      // console.log(req.body[key]);
+      res.transaction[key] = req.body[key];
+
+      let { premium, closePremium, type, gainOrLoss } = res.transaction;
+      // console.log("After loop key in body", res.transaction.key);
+      if (closePremium !== undefined) {
+        switch (type) {
+          case "Buy Call":
+            gainOrLoss = closePremium - premium;
+          case "Buy Put":
+            console.log("profit code run");
+            gainOrLoss = closePremium - premium;
+            break;
+          default:
+            gainOrLoss = 0;
+        }
+        res.transaction.gainOrLoss = gainOrLoss;
+      }
+    }
     const updateTransaction = await res.transaction.save();
     res.json(updateTransaction);
   } catch (err) {

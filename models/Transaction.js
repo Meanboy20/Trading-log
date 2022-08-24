@@ -21,7 +21,7 @@ const TransactionSchema = new mongoose.Schema({
   expirationDate: {
     type: Date,
     trim: true,
-    required: [true, "enter date"],
+    required: [false],
   },
 
   strikePrice: {
@@ -33,6 +33,12 @@ const TransactionSchema = new mongoose.Schema({
     type: Number,
     trim: true,
     required: [true, "enter premium"],
+  },
+
+  size: {
+    type: Number,
+    trim: true,
+    required: [true, "enter size"],
   },
 
   closePrice: {
@@ -52,6 +58,11 @@ const TransactionSchema = new mongoose.Schema({
 
   gainOrLoss: {
     type: Number,
+    required: [false],
+  },
+
+  note: {
+    type: String,
     required: [false],
   },
 
