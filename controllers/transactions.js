@@ -66,19 +66,34 @@ exports.updateTransaction = async (req, res) => {
   // console.log(req.body);
   try {
     for (key in req.body) {
-      // console.log(req.body[key]);
-      res.transaction[key] = req.body[key];
+      console.log(req.body[key]);
+      console.log(res.transaction[key]);
+      key === "analysis"
+        ? (res.transaction[key] = { ...res.transaction[key], ...req.body[key] })
+        : (res.transaction[key] = req.body[key]);
 
-      let { premium, closePremium, type, gainOrLoss } = res.transaction;
+      let { premium, closePremium, type, gainOrLoss, size } = res.transaction;
       // console.log("After loop key in body", res.transaction.key);
       if (closePremium !== undefined) {
+        // console.log("calculate profit");
         switch (type) {
           case "Buy Call":
-            gainOrLoss = closePremium - premium;
+            gainOrLoss = (closePremium - premium) * size;
+            break;
+
           case "Buy Put":
-            console.log("profit code run");
+            // console.log("profit code run");
             gainOrLoss = closePremium - premium;
             break;
+
+          case "Sell Call":
+            gainOrLoss = premium - closePremium;
+            break;
+
+          case "Sell Put":
+            gainOrLoss = premium - closePremium;
+            break;
+
           default:
             gainOrLoss = 0;
         }

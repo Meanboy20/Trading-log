@@ -27,7 +27,7 @@ export const AddTrade = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(trade);
+    // console.log(trade);
     addTransaction(trade);
     event.target.reset();
   };

@@ -1,6 +1,22 @@
 const mongoose = require("mongoose");
+const enteryPointSchema = new mongoose.Schema({
+  Macro: { type: Boolean },
+  RR: { type: Boolean },
+  Time: { type: Boolean },
+});
+
+const analysisSchema = new mongoose.Schema({
+  Target: { type: Boolean },
+  RR: { type: Boolean },
+  Time: { type: Boolean },
+});
 
 const TransactionSchema = new mongoose.Schema({
+  rating: {
+    type: Number,
+    trim: true,
+    required: [false],
+  },
   ticker: {
     type: String,
     trim: true,
@@ -69,6 +85,29 @@ const TransactionSchema = new mongoose.Schema({
   createAt: {
     type: Date,
     default: Date.now,
+  },
+
+  analysis: {
+    EntryPoint: enteryPointSchema,
+    Target: { type: Number },
+    Account: { type: String },
+    BreakEven: { type: Number },
+    StopLoss: { type: Number },
+    ClosingPlan: { type: String },
+    c: { type: Number },
+
+    Reality: { type: String },
+    Category: { type: String },
+    Review: { type: String },
+    chart: { type: String },
+    Rolling: [
+      {
+        date: { type: Date },
+        credit: { type: Number },
+        debit: { type: Number },
+      },
+    ],
+    other: { type: String },
   },
 });
 

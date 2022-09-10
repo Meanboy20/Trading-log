@@ -8,6 +8,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import { Ideas } from "./component/Ideas";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Body />} />
         <Route path="/edit/:id" element={<EditTrade />} />
+        <Route path="/ideas" element={<Ideas />} />
       </Routes>
     </GlobalProvider>
   );

@@ -74,13 +74,13 @@ export const GlobalProvider = ({ children }) => {
 
   async function updateTransaction(id, data) {
     try {
-      console.log("calling update api");
+      // console.log("calling update api");
 
       const res = await axios.patch(
         `http://localhost:5000/api/v1/transactions/edit/${id}`,
         data
       );
-      console.log("update executed");
+      // console.log("update executed");
       dispatch({
         type: "UPDATE_TRADE",
         payload: res,

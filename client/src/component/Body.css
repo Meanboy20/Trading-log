@@ -1,0 +1,16 @@
+.ant-layout-header .home-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 30px;
+  color: white;
+  margin-right: 10%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+  width: 150px;
+}
