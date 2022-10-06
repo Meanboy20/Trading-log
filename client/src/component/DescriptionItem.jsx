@@ -5,6 +5,11 @@ import React from "react";
 const DescriptionItem = ({ title, content, editDetail, setTradeDetail }) => {
   const subName = "Rolling";
 
+  const inputToArray = (value) => {
+    const chartArray = value.split(",");
+    return chartArray;
+  };
+
   return (
     <div className="site-description-item-profile-wrapper">
       <p className="site-description-item-profile-p-label">
@@ -34,7 +39,7 @@ const DescriptionItem = ({ title, content, editDetail, setTradeDetail }) => {
             setTradeDetail((pre) => ({
               ...pre,
 
-              [title === "Rolling" ? subName : name]: value,
+              [name]: name === "chart" ? inputToArray(value) : value,
             }));
           }}
         />

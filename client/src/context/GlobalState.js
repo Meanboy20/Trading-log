@@ -6,6 +6,7 @@ const initialState = {
   transactions: [],
   error: null,
   loading: true,
+  cases: [],
 };
 
 // Create context

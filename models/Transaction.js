@@ -28,6 +28,11 @@ const TransactionSchema = new mongoose.Schema({
     required: [true, "pls enter type"],
   },
 
+  account: {
+    type: String,
+    trim: true,
+  },
+
   stockPrice: {
     type: Number,
     trim: true,
@@ -93,13 +98,13 @@ const TransactionSchema = new mongoose.Schema({
     Account: { type: String },
     BreakEven: { type: Number },
     StopLoss: { type: Number },
+    RRratio: { type: String },
     ClosingPlan: { type: String },
-    c: { type: Number },
 
     Reality: { type: String },
     Category: { type: String },
     Review: { type: String },
-    chart: { type: String },
+    chart: { type: Array },
     Rolling: [
       {
         date: { type: Date },

@@ -1,15 +1,5 @@
 @import "~antd/dist/antd.css";
 
-table,
-th,
-td {
-  border: 2px solid blue;
-  border-collapse: collapse;
-  text-align: center;
-  overflow: hidden;
-  max-height: 0in;
-}
-
 input,
 select {
   padding: 6px;

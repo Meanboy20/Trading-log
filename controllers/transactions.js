@@ -1,4 +1,5 @@
 const Transaction = require("../models/Transaction");
+const Case = require("../models/Cases");
 const colors = require("colors");
 
 //@desc get all transactions
@@ -43,6 +44,29 @@ exports.addTransactions = async (req, res, next) => {
   }
 };
 
+//@add new case
+exports.addCase = async (req, res, next) => {
+  try {
+    const setupOfcase = await Case.create(req.body);
+    return res.status(201).json({
+      success: true,
+      data: setupOfcase,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      error: err,
+    });
+  }
+  // console.log(err);
+};
+
+//@get New case
+exports.getCases = async () => {
+  try {
+  } catch (err) {}
+};
+
 //@desc delete all transactions
 //@route DELETE api/v1/transactoins/:id
 //@access Public
@@ -83,15 +107,15 @@ exports.updateTransaction = async (req, res) => {
 
           case "Buy Put":
             // console.log("profit code run");
-            gainOrLoss = closePremium - premium;
+            gainOrLoss = (closePremium - premium) * size;
             break;
 
           case "Sell Call":
-            gainOrLoss = premium - closePremium;
+            gainOrLoss = (premium - closePremium) * size;
             break;
 
           case "Sell Put":
-            gainOrLoss = premium - closePremium;
+            gainOrLoss = (premium - closePremium) * size;
             break;
 
           default:

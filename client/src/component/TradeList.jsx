@@ -28,7 +28,12 @@ export const TradeList = () => {
   const { transaction, getTransactions, deleteTransaction, updateTransaction } =
     useContext(GlobalContext);
 
-  console.log(transaction);
+  // const target = transaction.find((ele) => {
+  //   return ele._id === "6321dcc637465829e837bd68";
+  // });
+
+  // console.log("re-render");
+
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [drawerContent, setDrawContent] = useState({ analysis: {} });
@@ -70,20 +75,13 @@ export const TradeList = () => {
     deleteTransaction(id);
   };
 
-  const showDrawer = (note, id, analysis) => {
-    setDrawContent((pre) => {
-      return { ...pre, note: note, analysis: analysis };
-    });
-    setDrawID(id);
-    setOpen(true);
-  };
-
   const onClose = () => {
     setOpen(false);
   };
+
   const columns = [
     {
-      title: "Rating",
+      title: "Rating-c",
       filters: [
         { text: 0.5, value: 0.5 },
         { text: 1, value: 1 },
@@ -165,6 +163,22 @@ export const TradeList = () => {
         return ele.type === value;
       },
     },
+    {
+      title: "A",
+      dataIndex: "account",
+      filters: [
+        { text: "G", value: "G" },
+        { text: "X", value: "X" },
+        { text: "IRA", value: "IRA" },
+        { text: "DN", value: "DN" },
+        { text: "M", value: "M" },
+      ],
+      key: "type",
+      width: "1%",
+      onFilter: (value, ele) => {
+        return ele.account === value;
+      },
+    },
 
     {
       title: "Strike Price",
@@ -233,6 +247,7 @@ export const TradeList = () => {
       key: "note",
       render: (ele) => {
         const note = ele.note.split(" ").slice(0, 6).join(" ");
+        // console.log("Note render run");
         return (
           <>
             <span>{note}</span>
@@ -273,17 +288,38 @@ export const TradeList = () => {
       },
       key: "_id",
     },
+    {
+      title: "Target",
+      width: "5%",
+      dataIndex: ["analysis", "Target"],
+    },
   ].filter((ele) => ele.title !== "Id");
+
+  const showDrawer = (note, id, analysis) => {
+    console.log("value pass to drawer", analysis.Target);
+    setDrawContent((pre) => {
+      return { ...pre, note: note, analysis: analysis };
+    });
+    setDrawID(id);
+    setOpen(true);
+  };
 
   return (
     <div className="table-container">
+      {/* {console.log(
+        "table re-rendered",
+        transaction.find((ele) => {
+          return ele._id === "6321dcc637465829e837bd68";
+        })
+      )} */}
       <Table
         columns={columns}
         dataSource={transaction}
         size="middle"
         rowKey="_id"
-        pagination={{ pageSize: 10 }}
+        pagination={{ pageSize: 15 }}
       />
+
       <Drawer
         width={540}
         height={200}
@@ -367,7 +403,7 @@ export const TradeList = () => {
             <DescriptionItem
               editDetail={editDetail}
               setTradeDetail={setTradeDetail}
-              title="RRratio"
+              title="c"
               content={drawerContent.analysis.RRratio}
             />
           </Col>
@@ -396,12 +432,13 @@ export const TradeList = () => {
         <Divider />
         <p className="site-description-item-profile-p">Improvment</p>
         <Row>
-          <Col span={24}>
+          <Col span={24} className="reality">
             <DescriptionItem
               editDetail={editDetail}
               setTradeDetail={setTradeDetail}
               title="Reality"
               content={drawerContent.analysis.Reality}
+              contentStyle={{ display: "flex", color: "red" }}
             />
           </Col>
           <Col span={12}>
@@ -432,7 +469,7 @@ export const TradeList = () => {
           </Col>
         </Row>
         <Row>
-          <Col span={24}>
+          <Col span={24} className="reality">
             <DescriptionItem
               editDetail={editDetail}
               setTradeDetail={setTradeDetail}
@@ -446,7 +483,7 @@ export const TradeList = () => {
             <DescriptionItem
               editDetail={editDetail}
               setTradeDetail={setTradeDetail}
-              title="Chart"
+              title="chart"
               content={
                 <>
                   <Image
@@ -454,9 +491,14 @@ export const TradeList = () => {
                       visible: false,
                     }}
                     width={300}
-                    src="https://lh4.googleusercontent.com/seaekNdK86Gh2BlYDgitUePCx3yFC_SRpnsYopLaJMv_c3qIG-0SbToOzVjb975tlmU=w2400"
+                    src={
+                      drawerContent.analysis.chart !== undefined
+                        ? drawerContent.analysis.chart[0]
+                        : null
+                    }
                     onClick={() => setVisible(true)}
                   />
+                  {/* <a href={`${drawerContent.analysis.chart}`}></a> */}
                   <div
                     style={{
                       display: "none",
@@ -468,7 +510,27 @@ export const TradeList = () => {
                         onVisibleChange: (vis) => setVisible(vis),
                       }}
                     >
-                      <Image src="https://lh4.googleusercontent.com/seaekNdK86Gh2BlYDgitUePCx3yFC_SRpnsYopLaJMv_c3qIG-0SbToOzVjb975tlmU=w2400" />
+                      <Image
+                        src={
+                          drawerContent.analysis.chart !== undefined
+                            ? drawerContent.analysis.chart[0]
+                            : null
+                        }
+                      />
+                      <Image
+                        src={
+                          drawerContent.analysis.chart !== undefined
+                            ? drawerContent.analysis.chart[1]
+                            : null
+                        }
+                      />
+                      <Image
+                        src={
+                          drawerContent.analysis.chart !== undefined
+                            ? drawerContent.analysis.chart[2]
+                            : null
+                        }
+                      />
                     </Image.PreviewGroup>
                   </div>
                 </>

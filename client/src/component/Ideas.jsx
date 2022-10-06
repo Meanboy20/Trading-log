@@ -24,6 +24,11 @@ export const Ideas = () => {
   );
   return (
     <div>
+      <div>
+        <a href="/newIdea" target="_blank">
+          Create new{" "}
+        </a>
+      </div>
       <List
         itemLayout="vertical"
         size="large"

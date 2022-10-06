@@ -113,6 +113,22 @@ export const AddTrade = () => {
         </div>
 
         <div className="row">
+          <label htmlFor="text">Account</label>
+          <select
+            name="account"
+            style={{ width: "150px" }}
+            onChange={handleChange}
+            placeholder="Account Name"
+          >
+            <option>X</option>
+            <option>G</option>
+            <option>IRA</option>
+            <option>DN</option>
+            <option>M</option>
+          </select>
+        </div>
+
+        <div className="row">
           <label htmlFor="text">Note</label>
           <textarea
             type="text"

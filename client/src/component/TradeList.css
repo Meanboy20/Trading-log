@@ -32,9 +32,14 @@
   margin-right: 8px;
   color: rgba(0, 0, 0, 0.85);
 }
+
 [data-theme="dark"] .site-description-item-profile-p {
   color: rgba(255, 255, 255, 0.85);
 }
 [data-theme="dark"] .site-description-item-profile-wrapper {
   color: rgba(255, 255, 255, 0.65);
+}
+
+.ant-col.ant-col-24.reality > * {
+  display: flex;
 }
