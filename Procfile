@@ -1,1 +1,2 @@
-web: node server.js
+backend: npm run start
+web: npm run client
