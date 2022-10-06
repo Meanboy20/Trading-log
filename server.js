@@ -6,8 +6,9 @@ const transactions = require("./routes/transactions");
 
 dotenv.config({ path: "./congfig/config.env" });
 
+const mongodb_uri = process.env.MONGO_URL || "mongodb://localhost/Tradelog";
 mongoose.connect(
-  "mongodb://localhost/Tradelog",
+  mongodb_uri,
   { useNewUrlParser: true },
   { useUnifedTopology: true }
 );
